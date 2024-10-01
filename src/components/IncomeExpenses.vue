@@ -1,10 +1,19 @@
 <template>
     <div>
         Income
-        <p>0.00</p>
+        <p>AED {{ totalIncome }}</p>
     </div>
     <div>
         Expenses
-        <p>0.00</p>
+        <p>AED {{ totalExpenses }}</p>
     </div>
 </template>
+
+<script>
+export default {
+    props: {
+        totalIncome: Number,
+        totalExpenses: Number,
+    }
+}
+</script>

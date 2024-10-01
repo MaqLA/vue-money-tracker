@@ -1,4 +1,12 @@
 <template>
     Your Balance
-    <p>AED 0.00</p>
+    <p>AED {{ totalBalance }}</p>
 </template>
+
+<script>
+export default {
+    props: {
+        totalBalance: Number
+    }
+}
+</script>
