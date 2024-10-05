@@ -1,1 +1,1 @@
-<template>Expense Tracker</template>
+<template>Money Note - Expense Tracker</template>

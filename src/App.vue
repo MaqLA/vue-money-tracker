@@ -2,8 +2,8 @@
 <template>
   <Header></Header>
    <div class="container">
-    <Balance :totalBalance="totalBalance"></Balance>
-    <IncomeExpenses :totalExpenses="totalExpenses" :totalIncome="totalIncome"></IncomeExpenses>
+    <Balance :totalBalance="+totalBalance"></Balance>
+    <IncomeExpenses :totalExpenses="+totalExpenses" :totalIncome="+totalIncome"></IncomeExpenses>
     <TransactionList :transactions="transactions"></TransactionList>
     <AddTransaction @add-transaction="addTransaction"></AddTransaction>
    </div>
@@ -26,20 +26,7 @@ export default {
   },
   data(){
     return {
-      transactions: [ // this is what might move to localstorage
-        // {
-        //   id: 1,
-        //   // date: new Date().getUTCDate(),
-        //   text: 'test data',
-        //   amount: 100.99
-        // },
-        // {
-        //   id: 2,
-        //   text: 'test data2',
-        //   amount: -50.01
-        // }
-      ],
-
+      transactions: [], // data held in localStorage
     };
   },
   computed: {
@@ -47,7 +34,8 @@ export default {
       // accumulator 0 holds the total values returned after calculation
       return this.transactions.reduce( (accumulator, transaction)=> {
         return accumulator + transaction.amount;
-      },0);
+      },0)
+      .toFixed(2);
     },
     totalIncome(){
       // return amounts greater than 0
@@ -57,7 +45,8 @@ export default {
         }else{
           return accumulator;
         }
-      },0);
+      },0)
+      .toFixed(2);
     },
     totalExpenses(){
       // return amounts less than 0
@@ -67,28 +56,42 @@ export default {
         }else{
           return accumulator;
         }
-      },0);
+      },0)
+      .toFixed(2);
     }
   },
   methods: {
     addTransaction(listingText, listingAmount){
       const newTransaction = {
         id: new Date().toISOString(),
-        // date: new Date().getUTCDate(),
         text: listingText,
         amount: listingAmount
       };
 
       this.transactions.push(newTransaction);
-    },
 
+      // call localStorage setter after pushing data to the array
+      this.saveLocalStorage();
+    },
+    saveLocalStorage(){
+      // save to localStorage as strings
+      localStorage.setItem('transactions', JSON.stringify(this.transactions));
+
+    },
+    loadLocalStorage(){
+      // localStorage is always strings
+      const savedLocalData = JSON.parse(
+        localStorage.getItem('transactions')
+      )
+
+      // if data saved in localStorage
+      if(savedLocalData){
+        this.transactions = savedLocalData;
+      }
+    }
+  },
+  mounted(){
+    this.loadLocalStorage();
   }
 }
 </script>
-
-<!-- <style>
- ul {
-  margin: 0;
-  /* padding: 0; */
- }
-</style> -->

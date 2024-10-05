@@ -1,10 +1,14 @@
 <template>
     New Transaction
     <form @submit.prevent="handleSubmit">
-        <label for="type">Text</label>
-        <input type="text" id="type" v-model="enteredText">
-        <label for="amount">Amount</label>
-        <input type="text" id="amount" v-model.number="enteredAmount">
+        <div>
+            <label for="type">Text</label>
+            <input type="text" id="type" v-model="enteredText" placeholder="Enter type">
+        </div>
+        <div>
+            <label for="amount">Amount<br>( Negative number for expense )</label>
+            <input type="text" id="amount" v-model.number="enteredAmount" placeholder="Enter amount">
+        </div>
         <button>Add Transaction</button>
     </form>
 </template>
@@ -20,16 +24,20 @@ export default {
     },
     methods: {
         handleSubmit(){
+            // Validation
+            if(!this.enteredText || !this.enteredAmount){
+                return;
+            }
+
             this.$emit(
-                'add-transaction', // emits function to App.vue
+                'add-transaction',
                 this.enteredText,
-                this.enteredAmount
+                parseFloat(this.enteredAmount)
             )
-            this.clearFields();
+
+            this.enteredText = '';
+            this.enteredAmount = '';
         },
-        clearFields(){
-            [this.enteredText, this.enteredAmount] = ['', '']
-        }
     }
 }
 </script>
