@@ -4,7 +4,7 @@
    <div class="container">
     <Balance :totalBalance="+totalBalance"></Balance>
     <IncomeExpenses :totalExpenses="+totalExpenses" :totalIncome="+totalIncome"></IncomeExpenses>
-    <TransactionList :transactions="transactions" @remove-transaction="removeTransaction"></TransactionList>
+    <TransactionList :transactions="transactions"></TransactionList>
     <AddTransaction @add-transaction="addTransaction"></AddTransaction>
    </div>
 </template>
@@ -71,11 +71,6 @@ export default {
       this.transactions.push(newTransaction);
 
       // call localStorage setter after pushing data to the array
-      this.saveLocalStorage();
-    },
-    removeTransaction(itemId){
-      this.transactions = this.transactions.filter(transaction => transaction.id != itemId);
-
       this.saveLocalStorage();
     },
     saveLocalStorage(){
