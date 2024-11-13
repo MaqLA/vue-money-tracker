@@ -1,16 +1,18 @@
 <template>
-    New Transaction
-    <form @submit.prevent="handleSubmit">
-        <div>
-            <label for="type">Text</label>
-            <input type="text" id="type" v-model="enteredText" placeholder="Enter type">
-        </div>
-        <div>
-            <label for="amount">Amount<br>( Negative number for expense )</label>
-            <input type="text" id="amount" v-model.number="enteredAmount" placeholder="Enter amount">
-        </div>
-        <button>Add Transaction</button>
-    </form>
+    <div>
+        New Transaction
+        <form @submit.prevent="handleSubmit">
+            <div>
+                <label for="type">Text</label>
+                <input type="text" id="type" v-model="enteredText" placeholder="Enter type">
+            </div>
+            <div>
+                <label for="amount">Amount<br>( Negative number for expense )</label>
+                <input type="text" id="amount" v-model.number="enteredAmount" placeholder="Enter amount">
+            </div>
+            <button>Add Transaction</button>
+        </form>
+    </div>
 </template>
 
 <script>

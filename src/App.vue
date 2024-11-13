@@ -7,6 +7,7 @@
     <TransactionList :transactions="transactions" @remove-transaction="removeTransaction"></TransactionList>
     <AddTransaction @add-transaction="addTransaction"></AddTransaction>
    </div>
+   <Footer></Footer>
 </template>
 
 <script>
@@ -15,6 +16,7 @@ import Balance from './components/Balance.vue';
 import IncomeExpenses from './components/IncomeExpenses.vue';
 import TransactionList from './components/TransactionList.vue';
 import AddTransaction from './components/AddTransaction.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   components: {
@@ -22,7 +24,8 @@ export default {
     Balance,
     IncomeExpenses,
     TransactionList,
-    AddTransaction
+    AddTransaction,
+    Footer
   },
   data(){
     return {

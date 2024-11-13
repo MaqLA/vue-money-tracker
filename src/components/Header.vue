@@ -1,1 +1,5 @@
-<template>Money Note - Expense Tracker</template>
+<template>
+    <header>
+        Money Note - Expense Tracker
+    </header>
+</template>

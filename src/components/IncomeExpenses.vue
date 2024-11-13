@@ -1,11 +1,13 @@
 <template>
     <div>
-        Income
-        <p>AED {{ totalIncome }}</p>
-    </div>
-    <div>
-        Expenses
-        <p>AED {{ totalExpenses }}</p>
+        <div class="column">
+            Income
+            <p>AED {{ totalIncome }}</p>
+        </div>
+        <div class="column">
+            Expenses
+            <p>AED {{ totalExpenses }}</p>
+        </div>
     </div>
 </template>
 
