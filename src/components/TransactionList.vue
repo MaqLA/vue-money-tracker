@@ -1,5 +1,6 @@
 <template>
     Transaction History
+    <span class="half-opacity">(Click on a list item to edit details)</span>
     <ul id="list">
         <li 
         v-for="item in transactions" 
@@ -19,7 +20,6 @@ export default {
     emits: ['remove-transaction'],
     methods: {
         removeTransaction(id){
-            // console.log(id)
             this.$emit('remove-transaction', id)
         }
     }
