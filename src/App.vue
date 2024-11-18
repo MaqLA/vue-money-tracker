@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import Header from './components/Header.vue';
+import Header from './components/layout/Header.vue';
 import Balance from './components/Balance.vue';
 import IncomeExpenses from './components/IncomeExpenses.vue';
 import TransactionList from './components/TransactionList.vue';
 import AddTransaction from './components/AddTransaction.vue';
-import Footer from './components/Footer.vue';
+import Footer from './components/layout/Footer.vue';
 
 export default {
   components: {
