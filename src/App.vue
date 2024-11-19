@@ -4,7 +4,10 @@
    <div class="container">
     <Balance :totalBalance="+totalBalance"></Balance>
     <IncomeExpenses :totalExpenses="+totalExpenses" :totalIncome="+totalIncome"></IncomeExpenses>
-    <TransactionList :transactions="transactions" @remove-transaction="removeTransaction"></TransactionList>
+    <TransactionList
+     :transactions="transactions" 
+     @remove-transaction="removeTransaction">
+    </TransactionList>
     <AddTransaction @add-transaction="addTransaction"></AddTransaction>
    </div>
    <Footer></Footer>
