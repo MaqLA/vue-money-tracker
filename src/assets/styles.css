@@ -1,28 +1,18 @@
 header, footer {
     text-align: center;
 }
-
 ul {
     margin: 0;
     /* padding: 0; */
 }
-
-#list {
-    list-style: none;
-}
-#list span {
-    margin: 1rem;
-}
-
 label {
     text-align: right;
 }
-
 input[type=text] {
+    /* width: 100%; */
     padding: 0.2rem;
     margin: 0.2rem;
 }
-
 /* button {
     border: none;
     padding: 0.2rem;
@@ -31,23 +21,33 @@ input[type=text] {
     color: whitesmoke;
 } */
 
+/* 
+    classes
+*/
+
 /* applied to Income / Expense */
 .column {
     float: left;
     width: 50%;
 }
-
-footer #info, 
 .half-opacity {
     opacity: 50%;
 }
-
 .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 10;
+    z-index: 5;
     background-color: rgba(0, 0, 0, 0.25);
+}
+/* 
+    ids 
+*/
+#list {
+    list-style: none;
+}
+#list span {
+    margin: 1rem;
 }

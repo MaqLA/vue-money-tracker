@@ -3,11 +3,11 @@
         New Transaction
         <form @submit.prevent="handleSubmit">
             <div>
-                <label for="type">Text</label>
-                <input type="text" id="type" v-model="enteredText" placeholder="Enter type">
+                <label for="desc">Text</label><br>
+                <input type="text" id="desc" v-model="enteredText" placeholder="Enter Description">
             </div>
             <div>
-                <label for="amount">Amount<br>( Negative number for expense )</label>
+                <label for="amount">Amount<br><span class="half-opacity">(Negative number for expense)</span></label><br>
                 <input type="text" id="amount" v-model.number="enteredAmount" placeholder="Enter amount">
             </div>
             <button>Add Transaction</button>

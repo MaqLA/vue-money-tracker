@@ -5,7 +5,7 @@
     <Balance :totalBalance="+totalBalance"></Balance>
     <IncomeExpenses :totalExpenses="+totalExpenses" :totalIncome="+totalIncome"></IncomeExpenses>
     <TransactionList
-     :transactions="transactions" 
+     :transactions="transactions"
      @remove-transaction="removeTransaction">
     </TransactionList>
     <AddTransaction @add-transaction="addTransaction"></AddTransaction>
@@ -32,7 +32,7 @@ export default {
   },
   data(){
     return {
-      transactions: [], // data held in localStorage
+      transactions: JSON.parse(localStorage.getItem('transactions')) || [], // data held in localStorage
     };
   },
   computed: {
@@ -74,7 +74,7 @@ export default {
         amount: listingAmount
       };
 
-      this.transactions.push(newTransaction);
+      this.transactions.unshift(newTransaction);
 
       // call localStorage setter after pushing data to the array
       this.saveLocalStorage();
@@ -87,7 +87,6 @@ export default {
     saveLocalStorage(){
       // save to localStorage as strings
       localStorage.setItem('transactions', JSON.stringify(this.transactions));
-
     },
     loadLocalStorage(){
       // localStorage is always strings
