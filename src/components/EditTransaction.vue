@@ -9,16 +9,20 @@
                 <form @submit.prevent="handleSubmitEdit">
                     <div>
                         <label for="desc">Edit Description</label><br>
-                        <input type="text" id="desc" v-model="newDescription">
+                        <input type="text" id="desc" v-model="newDescription" placeholder="Enter Description">
                     </div>
                     <div>
-                        <label for="amount">Edit Amount</label><br>
-                        <input type="text" id="amount" v-model.number="newAmount">
+                        <label for="amount">
+                            Edit Amount<br><span class="half-opacity">(Negative number for expense)</span>
+                        </label><br>
+                        <input type="text" id="amount" v-model.number.trim="newAmount" placeholder="Enter Number">
                     </div>
                     <button>Confirm Edit</button>
                 </form>
                 <p v-if="hasFormError">Enter valid details in the fields.</p>
-                <span><button type="button" @click="$emit('close-modal')">Cancel</button></span>
+                <p v-if="hasNumberError">Enter a valid non-zero number.</p>
+                <button type="button" @click="cancelEdit">Cancel</button>
+                <button class="delete-btn" @click="handleRemoveItem">Delete</button>
             </div>
         </dialog>
     </div>
@@ -33,20 +37,48 @@ export default {
             newDescription: '',
             newAmount: '',
             hasFormError: false,
+            hasNumberError: false,
         };
     },
     methods: {
-        handleSubmitEdit(){
+        cancelEdit(){
+            this.newDescription = '', this.newAmount = '';
+            this.hasFormError = false, this.hasNumberError = false;
+            this.$emit('close-modal');
+        },
+        handleSubmitEdit(){            
+            let oldDesc = this.item.text;
+            let oldAmount = this.item.amount;
+            let desc = !this.newDescription ? oldDesc : this.newDescription;
+            let amount = !this.newAmount ? oldAmount : this.newAmount;
+            
             // validation
-            if(this.newDescription || this.newAmount){
-                console.log({desc: this.newDescription, amm: this.newAmount})
-                this.newDescription = '';
-                this.newAmount = '';
-                this.$emit('close-modal');
-            } else {
+            if(!this.newDescription && !this.newAmount){
                 this.hasFormError = true;
+                return;
+            } else if(typeof amount != 'number'){
+                this.hasNumberError = true;
+                return;
             }
-        }
+
+            const payload = {
+                itemId: this.item.id,
+                description: desc,
+                amount: parseFloat(amount)
+            }
+            this.$parent.$emit('edit-transaction', payload);
+
+            this.newDescription = '', this.newAmount = '';
+            this.hasFormError = false, this.hasNumberError = false;
+            this.$emit('close-modal');
+        },
+        handleRemoveItem(){
+            const payload = this.item.id;
+
+            this.$parent.$emit('remove-transaction', payload);
+
+            this.$emit('close-modal');
+        },
     }
 }
 </script>

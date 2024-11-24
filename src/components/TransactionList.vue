@@ -4,7 +4,6 @@
     <ul id="list">
         <li v-for="item in transactions" :key="item.id">
             {{ item.text }}<span>AED {{ item.amount }}</span>
-            <button @click="removeTransaction(item.id)" disabled>Delete</button>
             <button type="button" @click="openModal(item)">Edit</button>
         </li>
     </ul>
@@ -18,7 +17,7 @@ import EditTransaction from './EditTransaction.vue';
 export default {
     components: { EditTransaction },
     props: { transactions: Object, editing: Boolean },
-    emits: ['remove-transaction', 'toggle-modal'],
+    emits: ['remove-transaction', 'toggle-modal', 'edit-transaction'], // 'remove' and 'edit' emitted from grandchild
     data(){
         return {
             showModal: false,
@@ -26,13 +25,9 @@ export default {
         };
     },
     methods: {
-        removeTransaction(id){
-            this.$emit('remove-transaction', id);
-        },
         openModal(item){
             this.showModal = true;
             this.selectedItem = item;
-            console.log(item)
         },
         closeModal(){
             this.showModal = false;

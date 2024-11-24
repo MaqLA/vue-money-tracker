@@ -6,6 +6,7 @@
     <IncomeExpenses :totalExpenses="+totalExpenses" :totalIncome="+totalIncome"></IncomeExpenses>
     <TransactionList
      :transactions="transactions"
+     @edit-transaction="editTransaction"
      @remove-transaction="removeTransaction">
     </TransactionList>
     <AddTransaction @add-transaction="addTransaction"></AddTransaction>
@@ -67,16 +68,33 @@ export default {
     }
   },
   methods: {
-    addTransaction(listingText, listingAmount){
+    addTransaction(data){
       const newTransaction = {
         id: new Date().toISOString(),
-        text: listingText,
-        amount: listingAmount
+        text: data.description,
+        amount: data.amount
       };
 
       this.transactions.unshift(newTransaction);
 
       // call localStorage setter after pushing data to the array
+      this.saveLocalStorage();
+    },
+    editTransaction(data){
+      const modifiedItem = {
+        id: data.itemId,
+        text: data.description,
+        amount: data.amount
+      };
+
+      const transactionsCopy = [...this.transactions];
+      const targetItem = this.transactions.findIndex(item => item.id === modifiedItem.id);
+
+      if(targetItem == -1){ return }
+
+      transactionsCopy[targetItem] = modifiedItem;
+      this.transactions = transactionsCopy;
+
       this.saveLocalStorage();
     },
     removeTransaction(itemId){
