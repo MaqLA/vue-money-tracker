@@ -1,59 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --ff: "Inter", sans-serif;
+
+    --h1: bold 1.125rem/1.4em var(--ff);
+    --h2: bold 1rem/1.4em var(--ff);
+    --default: 1rem/1.4em var(--ff);
+    --default-2: .875rem/1.4em var(--ff);
+
+    --gray100: hsl(0,0%,100%);
+    --gray65: hsl(0,0%,65%);
+
+    --shadow: 0 .5em .5em rgba(0, 0, 0, 0.1);
+
+    --card-border: 1px solid rgba(0, 0, 0, 0.25);
+}
+/* Base HTML */
+html {
+    font-family: var(--ff);
+    background-color: hsl(0,0%,95%);
+}
 header, footer {
     text-align: center;
-}
-ul {
-    margin: 0;
-    /* padding: 0; */
 }
 label {
     text-align: right;
 }
 input[type=text] {
-    /* width: 100%; */
-    padding: 0.2rem;
-    margin: 0.2rem;
+    width: -webkit-fill-available;
+    padding: .5em;
+    margin: .5em 0 .5em 0;
+}
+input[type=text]:focus {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Adjust the width as needed */
+    max-width: 40rem;
     border-style: none;
+    box-shadow: var(--shadow);
+    z-index: 100;
+    overflow: hidden;
 }
-/* button {
-    border: none;
-    padding: 0.2rem;
-    margin: 0.2rem;
-    background-color: black;
-    color: whitesmoke;
+table {
+    width: 100%;
+}
+table,
+td,
+th {
+    font: var(--default-2);
+    padding: 0.5em 1em;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-collapse: collapse;
+}
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+td:last-child {
+    text-align: center;   
+}
+button {
+    cursor: pointer;
+}
+/* # Layout Classes & UI */
+.page-layout {
+    display: grid;
+    margin: 0 110px;
+    padding: 1em;
+}
+.columns {
+    --col-count: 2, 1fr;
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(var(--col-count));
+}
+.box-card {
+    background-color: var(--gray100);
+    border: var(--card-border);
+    padding: 1em;
+    margin: 1em 0;
+    box-shadow: var(--shadow);
+}
+.btn {
+    min-width: calc(100% / 6);
+    padding: .25em .5em;
+    /* holding off on margins till i figure out good spacing for all of the buttons */
+    /* margin: .5em 0 .5em; */
+}
+.btn-delete {
+    color: rgba(255, 0, 0, 1);
+}
+/* .btn-group .btn {
+
 } */
-
-/* 
-    classes
-*/
-
-/* applied to Income / Expense */
-.column {
-    float: left;
-    width: 50%;
-}
-.half-opacity {
-    opacity: 50%;
-}
 .modal-backdrop {
     position: fixed;
+    box-sizing: border-box;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 5;
+    z-index: 20;
     background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(.5em);
 }
-.delete-btn {
-    color: rgba(255, 0, 0, 1);
+
+/* # Typography */
+.title {
+    font: var(--h1);
 }
-/* 
-    ids 
-*/
-#list {
-    list-style: none;
+.heading {
+    margin-bottom: 1em;
 }
-#list span {
-    margin: 1rem;
+.bold-secondary {
+    font: var(--h2);
+}
+.secondary {
+    color: var(--gray65);
+    font: var(--default-2);
 }

@@ -1,14 +1,26 @@
 <template>
-    Transaction History
-    <span class="half-opacity">(Click 'Edit' to edit details)</span>
-    <ul id="list">
-        <li v-for="item in transactions" :key="item.id">
-            {{ item.text }}<span>AED {{ item.amount }}</span>
-            <button type="button" @click="openModal(item)">Edit</button>
-        </li>
-    </ul>
+    <div class="box-card">
+        <div class="heading">Transactions</div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Description</td>
+                    <td>Amount</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody v-if="transactions.length === 0"><tr><td>There are no transactions yet. Create one!</td></tr></tbody>
+            <tbody v-for="item in transactions" :key="item.id">
+                <tr>
+                    <td>{{ item.text }}</td><td><span v-if="item.amount > 0">+</span>{{ item.amount  }}</td>
+                    <td>
+                        <button class="btn" type="button" @click="openModal(item)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <EditTransaction :item="selectedItem" :show-modal="showModal" @close-modal="closeModal"></EditTransaction>
-    <p v-if="transactions.length === 0">There are no transactions yet. Create one!</p>
 </template>
 
 <script>

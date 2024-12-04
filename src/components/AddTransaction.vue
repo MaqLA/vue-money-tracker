@@ -1,18 +1,20 @@
 <template>
-    <div>
-        New Transaction
+    <div class="box-card">
+        <div class="heading">New Transaction</div>
         <form @submit.prevent="handleSubmit">
-            <div>
-                <label for="desc">Text</label><br>
-                <input type="text" id="desc" v-model="enteredText" placeholder="Enter Description">
-            </div>
-            <div>
-                <label for="amount">Amount<br><span class="half-opacity">(Negative number for expense)</span></label><br>
-                <input type="text" id="amount" v-model.number.trim="enteredAmount" placeholder="Enter Number">
-            </div>
-            <button>Add Transaction</button>
+            <p>
+                <label for="desc">Description</label><br>
+                <input type="text" id="desc" v-model="enteredText" placeholder="Enter a short description" autofocus>
+            </p>
+            <p>
+                <label for="amount">Amount
+                    <span class="secondary"><sub>(Negative number for expense)</sub></span>
+                </label><br>
+                <input type="text" id="amount" v-model.number.trim="enteredAmount" placeholder="Enter a number">
+            </p>
+            <button class="btn">Add Transaction</button>
         </form>
-        <p v-if="hasFormError">Enter valid details in the fields.</p>
+        <p v-if="hasFormError" class="secondary">Enter valid details in the fields.</p>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <span class="half-opacity">
+        <span class="secondary">
             <sub>2024 / MaqLA</sub>
         </span>
     </footer>

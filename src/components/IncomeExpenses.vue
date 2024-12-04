@@ -1,12 +1,12 @@
 <template>
-    <div>
-        <div class="column">
+    <div class="columns">
+        <div class="box-card">
             Income
-            <p>AED {{ totalIncome }}</p>
+            <p class="bold-secondary">${{ totalIncome }}</p>
         </div>
-        <div class="column">
+        <div class="box-card">
             Expenses
-            <p>AED {{ totalExpenses }}</p>
+            <p class="bold-secondary">${{ totalExpenses }}</p>
         </div>
     </div>
 </template>

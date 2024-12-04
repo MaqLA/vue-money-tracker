@@ -1,28 +1,42 @@
 <template>
-    <div v-if="showModal" class="modal-backdrop">
+    <div v-if="showModal">
         <!-- modals must be opened programatically .showModal() -->
-        <dialog open id="edit">
-            Edit Transaction
+         <div class="modal-backdrop" @click="$emit('close-modal')"></div>
+        <dialog open>
+            <div class="heading">Edit Transaction</div>
             <div>
-                {{ item.text }}<span style="padding-left: 1em;">AED {{ item.amount }}</span>
+                <table><tbody>
+                    <tr>
+                        <td>{{ item.text }}</td>
+                        <td><span v-if="item.amount > 0">+</span>{{ item.amount }}</td>
+                    </tr>
+                </tbody></table>
                 <!-- method="dialog" will close dialog on submit -->
                 <form @submit.prevent="handleSubmitEdit">
                     <div>
-                        <label for="desc">Edit Description</label><br>
-                        <input type="text" id="desc" v-model="newDescription" placeholder="Enter Description">
+                        <p>
+                            <label for="desc">Description</label><br>
+                            <input type="text" id="desc" v-model="newDescription" placeholder="Enter Description">
+                        </p>
                     </div>
                     <div>
-                        <label for="amount">
-                            Edit Amount<br><span class="half-opacity">(Negative number for expense)</span>
-                        </label><br>
-                        <input type="text" id="amount" v-model.number.trim="newAmount" placeholder="Enter Number">
+                        <p>
+                            <label for="amount">
+                                Amount<br><span class="secondary"><sub>(Negative number for expense)</sub></span>
+                            </label><br>
+                            <input type="text" id="amount" v-model.number.trim="newAmount" placeholder="Enter Number">
+                        </p>
                     </div>
-                    <button>Confirm Edit</button>
+                    <button class="btn">Confirm</button>
                 </form>
                 <p v-if="hasFormError">Enter valid details in the fields.</p>
                 <p v-if="hasNumberError">Enter a valid non-zero number.</p>
-                <button type="button" @click="cancelEdit">Cancel</button>
-                <button class="delete-btn" @click="handleRemoveItem">Delete</button>
+                <!-- <div class="btn-group"> -->
+                <p>
+                    <button class="btn btn-delete" @click="handleRemoveItem">Delete</button>
+                    <button class="btn" type="button" style="float: right;" @click="cancelEdit">Cancel</button>
+                </p>
+                <!-- </div> -->
             </div>
         </dialog>
     </div>

@@ -1,15 +1,15 @@
 <!-- Just Build -->
 <template>
   <Header></Header>
-   <div class="container">
+   <div class="page-layout">
     <Balance :totalBalance="+totalBalance"></Balance>
     <IncomeExpenses :totalExpenses="+totalExpenses" :totalIncome="+totalIncome"></IncomeExpenses>
+    <AddTransaction @add-transaction="addTransaction"></AddTransaction>
     <TransactionList
      :transactions="transactions"
      @edit-transaction="editTransaction"
      @remove-transaction="removeTransaction">
     </TransactionList>
-    <AddTransaction @add-transaction="addTransaction"></AddTransaction>
    </div>
    <Footer></Footer>
 </template>
