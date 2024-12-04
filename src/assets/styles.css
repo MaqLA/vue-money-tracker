@@ -122,4 +122,8 @@ button {
 .secondary {
     color: var(--gray65);
     font: var(--default-2);
+
+    sub {
+        vertical-align: middle;
+    }
 }

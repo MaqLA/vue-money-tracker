@@ -9,7 +9,9 @@
                     <td>Action</td>
                 </tr>
             </thead>
-            <tbody v-if="transactions.length === 0"><tr><td>There are no transactions yet. Create one!</td></tr></tbody>
+            <tbody v-if="transactions.length === 0">
+                <tr><td colspan="3">There are no transactions yet. Create one!</td></tr>
+            </tbody>
             <tbody v-for="item in transactions" :key="item.id">
                 <tr>
                     <td>{{ item.text }}</td><td><span v-if="item.amount > 0">+</span>{{ item.amount  }}</td>

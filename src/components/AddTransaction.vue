@@ -7,7 +7,7 @@
                 <input type="text" id="desc" v-model="enteredText" placeholder="Enter a short description" autofocus>
             </p>
             <p>
-                <label for="amount">Amount
+                <label for="amount">Amount<br>
                     <span class="secondary"><sub>(Negative number for expense)</sub></span>
                 </label><br>
                 <input type="text" id="amount" v-model.number.trim="enteredAmount" placeholder="Enter a number">
