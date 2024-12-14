@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { formattedDate } from '@/main.js';
+
 export default {
     emits: ['add-transaction'],
     data(){
@@ -39,6 +41,8 @@ export default {
             }
 
             const payload = {
+                id: new Date().toISOString(),
+                date: formattedDate,
                 description: this.enteredText,
                 amount: parseFloat(this.enteredAmount)
             }

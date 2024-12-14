@@ -5,12 +5,22 @@
         <dialog open>
             <div class="heading">Edit Transaction</div>
             <div>
-                <table><tbody>
-                    <tr>
-                        <td>{{ item.text }}</td>
-                        <td><span v-if="item.amount > 0">+</span>{{ item.amount }}</td>
-                    </tr>
-                </tbody></table>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Date</td>
+                            <td>Description</td>
+                            <td>Amount</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ item.date }}</td>
+                            <td>{{ item.text }}</td>
+                            <td><span v-if="item.amount > 0">+</span>{{ item.amount }}</td>
+                        </tr>
+                    </tbody>
+                </table>
                 <!-- method="dialog" will close dialog on submit -->
                 <form @submit.prevent="handleSubmitEdit">
                     <div>
@@ -77,6 +87,7 @@ export default {
 
             const payload = {
                 itemId: this.item.id,
+                itemDate: this.item.date,
                 description: desc,
                 amount: parseFloat(amount)
             }

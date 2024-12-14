@@ -60,9 +60,6 @@ th {
 tbody tr:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
-td:last-child {
-    text-align: center;   
-}
 button {
     cursor: pointer;
 }
@@ -89,6 +86,9 @@ button {
     padding: 1em;
     margin: 1em 0;
     box-shadow: var(--shadow);
+}
+.main-table td:last-child {
+    text-align: center;   
 }
 .btn {
     min-width: calc(100% / 6);

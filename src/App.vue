@@ -70,7 +70,8 @@ export default {
   methods: {
     addTransaction(data){
       const newTransaction = {
-        id: new Date().toISOString(),
+        id: data.id,
+        date: data.date,
         text: data.description,
         amount: data.amount
       };
@@ -83,12 +84,12 @@ export default {
     editTransaction(data){
       const modifiedItem = {
         id: data.itemId,
+        date: data.itemDate,
         text: data.description,
         amount: data.amount
       };
 
-      const transactionsCopy = [...this.transactions];
-      const targetItem = this.transactions.findIndex(item => item.id === modifiedItem.id);
+      const targetItem = [...this.transactions].findIndex(item => item.id === modifiedItem.id);
 
       if(targetItem == -1){ return }
 

@@ -1,9 +1,10 @@
 <template>
     <div class="box-card">
         <div class="heading">Transactions</div>
-        <table>
+        <table class="main-table">
             <thead>
                 <tr>
+                    <td>Date</td>
                     <td>Description</td>
                     <td>Amount</td>
                     <td>Action</td>
@@ -14,7 +15,9 @@
             </tbody>
             <tbody v-for="item in transactions" :key="item.id">
                 <tr>
-                    <td>{{ item.text }}</td><td><span v-if="item.amount > 0">+</span>{{ item.amount  }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.text }}</td>
+                    <td><span v-if="item.amount > 0">+</span>{{ item.amount  }}</td>
                     <td>
                         <button class="btn" type="button" @click="openModal(item)">Edit</button>
                     </td>
