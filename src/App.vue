@@ -89,7 +89,8 @@ export default {
         amount: data.amount
       };
 
-      const targetItem = [...this.transactions].findIndex(item => item.id === modifiedItem.id);
+      const transactionsCopy = [...this.transactions];
+      const targetItem = this.transactions.findIndex(item => item.id === modifiedItem.id);
 
       if(targetItem == -1){ return }
 

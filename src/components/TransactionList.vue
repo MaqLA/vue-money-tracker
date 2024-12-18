@@ -11,7 +11,7 @@
                 </tr>
             </thead>
             <tbody v-if="transactions.length === 0">
-                <tr><td colspan="3">There are no transactions yet. Create one!</td></tr>
+                <tr><td colspan="4">There are no transactions yet. Create one!</td></tr>
             </tbody>
             <tbody v-for="item in transactions" :key="item.id">
                 <tr>
