@@ -1,7 +1,7 @@
 <template>
     <div class="box-card">
         <div class="heading">New Transaction</div>
-        <form @submit.prevent="handleSubmit">
+        <form @submit.prevent="handleSubmit" autocomplete="off">
             <p>
                 <label for="desc">Description</label><br>
                 <input type="text" id="desc" v-model="enteredText" placeholder="Enter a short description" autofocus>

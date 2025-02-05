@@ -22,7 +22,7 @@
                     </tbody>
                 </table>
                 <!-- method="dialog" will close dialog on submit -->
-                <form @submit.prevent="handleSubmitEdit">
+                <form @submit.prevent="handleSubmitEdit" autocomplete="off">
                     <div>
                         <p>
                             <label for="desc">Description</label><br>
