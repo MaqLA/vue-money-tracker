@@ -7,20 +7,16 @@
                     <td>Date</td>
                     <td>Description</td>
                     <td>Amount</td>
-                    <td>Action</td>
                 </tr>
             </thead>
             <tbody v-if="transactions.length === 0">
                 <tr><td colspan="4">There are no transactions yet. Create one!</td></tr>
             </tbody>
             <tbody v-for="item in transactions" :key="item.id">
-                <tr>
+                <tr @click="openModal(item)">
                     <td>{{ item.date }}</td>
                     <td>{{ item.text }}</td>
                     <td><span v-if="item.amount > 0">+</span>{{ item.amount  }}</td>
-                    <td>
-                        <button class="btn" type="button" @click="openModal(item)">Edit</button>
-                    </td>
                 </tr>
             </tbody>
         </table>
